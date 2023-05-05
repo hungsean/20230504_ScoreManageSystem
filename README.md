@@ -29,7 +29,7 @@ The `JAVA PROJECTS` view allows you to manage your dependencies. More details ca
 6. bubble sort 各科、姓名;
 7. selection sort:各科、姓名;
 8. linear seearch:輸入學號、或姓名 ， 列出成績
-9.  binarry search: 輸入學號、或姓名 ， 列出成績;
+9. binarry search: 輸入學號、或姓名 ， 列出成績;
 10. 讀取成績檔案;
 11. 寫入成績檔案；
 12. help: 做個指令list;
