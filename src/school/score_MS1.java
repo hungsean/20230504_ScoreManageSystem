@@ -47,7 +47,7 @@ public class score_MS1 {
 			File sourceF = new File("test2.txt"); 
 			Scanner input = new Scanner(sourceF);
 			int sno, chin, math;
-			String name, cr;
+			String name;
 			int i=0;
 			//for(int i=0;i<=4;i++) {
 			while (input.hasNextLine())
@@ -56,7 +56,7 @@ public class score_MS1 {
 				name = input.next();
 				chin = input.nextInt();
 				math = input.nextInt();
-				if (i<=3) cr=input.nextLine();
+				if (i<=3) input.nextLine();
 				classsc[i]= new score(sno,name,chin,math);//array of object
 				System.out.print(classsc[i].sno+","); 
 				i++;
