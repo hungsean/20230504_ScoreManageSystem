@@ -6,6 +6,9 @@ public class Score {
 	int mathScore;
 	int sum;
 	float avg;
+	int chineseRank;
+	int mathRank;
+	int avgRank;
 	public Score(String name,int chineseScore,int mathScore)
 	{
 		this.name = name;
@@ -66,7 +69,7 @@ public class Score {
 	{
 		updateSum();
 		updateAvg();
-		
+		updateRank();
 	}
 
 	private void updateSum() 
@@ -74,11 +77,30 @@ public class Score {
 		this.sum = this.chineseScore + this.mathScore;
 	}
 
-	void updateAvg() 
+	private void updateAvg() 
 	{
 		this.avg = (float)(this.sum) / (float)2;
 	}
 
+	private void updateRank()
+	{
+		this.chineseRank = rank(this.chineseScore);
+		this.mathRank = rank(this.mathScore);
+		this.avgRank = rank(this.avg);
+	}
+
+
+	public int rank(float score)
+	{
+		score -= 50;
+		return (int)(score / 10);
+	}
+
+	public int rank(int score)
+	{
+		score -= 50;
+		return score / 10;
+	}
 
 
 
