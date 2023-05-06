@@ -105,14 +105,7 @@ public class App {
                 System.out.println();
                 for (int i = 0; i < studentNumber.length; i++)
                 {
-                    System.out.println(studentNumber[i] + " " + Score[i].getName());
-                    System.out.println(" Chinese: " + Score[i].getChineseScore());
-                    System.out.println(" Math: " + Score[i].getMathScore());
-                    System.out.println(" Average: " + Score[i].getAvg());
-                    System.out.println(" Chinese rank: " + ranktoString(Score[i].getChineseRank()));
-                    System.out.println(" Math rank: " + ranktoString(Score[i].getMathRank()));
-                    System.out.println(" Average rank: " + ranktoString(Score[i].getAvgRank()));
-                    System.out.println();
+                    printStudent(studentNumber[i], Score[i]);
                 }
                 continue;
             }
@@ -148,6 +141,19 @@ public class App {
             return "不及格";
         }
     }
+
+    public static void printStudent(int studentNumber, Score score)
+    {
+        System.out.println(studentNumber + " " + score.getName());
+        System.out.println(" Chinese: " + score.getChineseScore());
+        System.out.println(" Math: " + score.getMathScore());
+        System.out.println(" Average: " + score.getAvg());
+        System.out.println(" Chinese rank: " + ranktoString(score.getChineseRank()));
+        System.out.println(" Math rank: " + ranktoString(score.getMathRank()));
+        System.out.println(" Average rank: " + ranktoString(score.getAvgRank()));
+        System.out.println();
+    }
+
 }
 
 // System.out.println("1. Add student");
