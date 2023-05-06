@@ -80,7 +80,8 @@ public class Student {
 
     public boolean inputFile(String filename)
     {
-        String path = System.getProperty ("user.dir") + filename;
+        String path = System.getProperty ("user.dir") + "\\" + filename;
+        System.out.println(path);
         try 
         {
             File file = new File(path);
@@ -109,7 +110,7 @@ public class Student {
 
     public boolean outputFile(String filename)
     {
-        String path = System.getProperty ("user.dir") + filename;
+        String path = System.getProperty ("user.dir") + "\\" + filename;
         try 
         {
             File file = new File(path);
@@ -137,6 +138,160 @@ public class Student {
             return false;
         }
     }
+
+    public Map.Entry<Integer, Score> getStudentByLinear(int studentNumber)
+    {
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            if (entry.getKey() == studentNumber)
+            {
+                return entry;
+            }
+        }
+        return null;
+    }
+
+    public Map.Entry<Integer, Score> getStudentByBinary(int studentNumber)
+    {
+        int left = 0;
+        int right = studentMap.size() - 1;
+        while (left <= right)
+        {
+            int mid = (left + right) / 2;
+            int midStudentNumber = (int) studentMap.keySet().toArray()[mid];
+            if (midStudentNumber == studentNumber)
+            {
+                return (Map.Entry<Integer, Score>) studentMap.entrySet().toArray()[mid];
+            }
+            else if (midStudentNumber > studentNumber)
+            {
+                right = mid - 1;
+            }
+            else if (midStudentNumber < studentNumber)
+            {
+                left = mid + 1;
+            }
+        }
+        return null;
+    }
+
+    public int[] getAllStudentNumber()
+    {
+        int[] studentNumberArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            int studentNumber = entry.getKey();
+            studentNumberArray[i] = studentNumber;
+            i++;
+        }
+        return studentNumberArray;
+    }
+
+    public String[] getAllStudentName()
+    {
+        String[] studentNameArray = new String[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            String studentName = score.getName();
+            studentNameArray[i] = studentName;
+            i++;
+        }
+        return studentNameArray;
+    }
+
+    public float[] getAllStudentAvg()
+    {
+        float[] studentAvgArray = new float[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            float studentAvg = score.getAvg();
+            studentAvgArray[i] = studentAvg;
+            i++;
+        }
+        return studentAvgArray;
+    }
+
+    public int[] getAllStudentAvgRank()
+    {
+        int[] studentRankArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int studentRank = score.getAvgRank();
+            studentRankArray[i] = studentRank;
+            i++;
+        }
+        return studentRankArray;
+    }
+
+    public float getChineseSD()
+    {
+        return chineseSD;
+    }
+
+    public float getMathSD()
+    {
+        return mathSD;
+    }
+
+    public int[] getCountChineseRank()
+    {
+        int[] chineseRankArray = new int[6];
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int chineseScore = score.getChineseRank();
+            chineseRankArray[chineseScore]++;
+        }
+        return chineseRankArray;
+    }
+
+    public int[] getCountMathRank()
+    {
+        int[] mathRankArray = new int[6];
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int mathScore = score.getMathRank();
+            mathRankArray[mathScore]++;
+        }
+        return mathRankArray;
+    }
+
+    public int[] getCountAvgRank()
+    {
+        int[] avgRankArray = new int[6];
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int avgScore = score.getAvgRank();
+            avgRankArray[avgScore]++;
+        }
+        return avgRankArray;
+    }
+
+    public Score[] getAllScores()
+    {
+        Score[] scoreArray = new Score[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            scoreArray[i] = score;
+            i++;
+        }
+        return scoreArray;
+    }
+
+
+
+
 
 
 }

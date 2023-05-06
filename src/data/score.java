@@ -67,6 +67,22 @@ public class Score {
 		return avg;
 	}
 
+	public int getChineseRank() 
+	{
+		return chineseRank;
+	}
+
+	public int getMathRank() 
+	{
+		return mathRank;
+	}
+
+	public int getAvgRank() 
+	{
+		return avgRank;
+	}
+
+
 	private void update()
 	{
 		updateSum();
@@ -95,12 +111,16 @@ public class Score {
 	public int rank(float score)
 	{
 		score -= 50;
+		if (score < 0)
+			return 0;
 		return (int)(score / 10);
 	}
 
 	public int rank(int score)
 	{
 		score -= 50;
+		if (score < 0)
+			return 0;
 		return score / 10;
 	}
 
