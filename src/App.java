@@ -1,9 +1,10 @@
 import data.Score;
+import data.Student;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        Score s1 = new Score("John", 91, 80);
-        System.out.println(s1.getSum());
-        System.out.println(s1.getAvg());
+        Student student = new Student();
+        boolean isFile = student.inputFile("test2.txt");
+        System.out.println(isFile);
     }
 }

@@ -1,8 +1,9 @@
 package data;
 
+import java.io.File;
 import java.util.*;
 
-public class student {
+public class Student {
 
     Map<Integer, Score> studentMap = new HashMap<Integer, Score>();
     
@@ -76,4 +77,66 @@ public class student {
         this.chineseSD = chineseSD;
         this.mathSD = mathSD;
     }
+
+    public boolean inputFile(String filename)
+    {
+        String path = System.getProperty ("user.dir") + filename;
+        try 
+        {
+            File file = new File(path);
+            Scanner fileScanner = new Scanner(file);
+            while (fileScanner.hasNextLine()) 
+            {
+                String line = fileScanner.nextLine();
+                String[] lineArray = line.split(" ");
+                int studentNumber = Integer.parseInt(lineArray[0]);
+                String name = lineArray[1];
+                int chineseScore = Integer.parseInt(lineArray[2]);
+                int mathScore = Integer.parseInt(lineArray[3]);
+                Score score = new Score(name, chineseScore, mathScore);
+                addStudent(studentNumber, score);
+            }
+            fileScanner.close();
+            return true;
+        } 
+        catch (Exception e) 
+        {
+            System.out.println("File not found");
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    public boolean outputFile(String filename)
+    {
+        String path = System.getProperty ("user.dir") + filename;
+        try 
+        {
+            File file = new File(path);
+            if (!file.exists())
+            {
+                file.createNewFile();
+            }
+            Formatter fileFormatter = new Formatter(file);
+            for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+            {
+                int studentNumber = entry.getKey();
+                Score score = entry.getValue();
+                String name = score.getName();
+                int chineseScore = score.getChineseScore();
+                int mathScore = score.getMathScore();
+                fileFormatter.format("%d %s %d %d\n", studentNumber, name, chineseScore, mathScore);
+            }
+            fileFormatter.close();
+            return true;
+        } 
+        catch (Exception e) 
+        {
+            System.out.println("File not found");
+            System.out.println(e);
+            return false;
+        }
+    }
+
+
 }

@@ -9,6 +9,7 @@ public class Score {
 	int chineseRank;
 	int mathRank;
 	int avgRank;
+	
 	public Score(String name,int chineseScore,int mathScore)
 	{
 		this.name = name;
@@ -16,6 +17,7 @@ public class Score {
 		this.mathScore = mathScore;
 		update();
 	}
+
 	public Score(int studentNumber,String name)
 	{
 		//call complete constructor
