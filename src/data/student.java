@@ -289,7 +289,205 @@ public class Student {
         return scoreArray;
     }
 
+    public int[] chineseBubbleSort()
+    {
+        int[] chineseScoreArray = new int[studentMap.size()];
+        int[] studentNumberArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int chineseScore = score.getChineseScore();
+            chineseScoreArray[i] = chineseScore;
+            studentNumberArray[i] = entry.getKey();
+            i++;
+        }
+        return bubbleSort(chineseScoreArray, studentNumberArray);
+    }
 
+    public int[] mathBubbleSort()
+    {
+        int[] mathScoreArray = new int[studentMap.size()];
+        int[] studentNumberArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int mathScore = score.getMathScore();
+            mathScoreArray[i] = mathScore;
+            studentNumberArray[i] = entry.getKey();
+            i++;
+        }
+        return bubbleSort(mathScoreArray, studentNumberArray);
+    }
+
+    public int[] avgBubbleSort()
+    {
+        float[] avgScoreArray = new float[studentMap.size()];
+        int[] studentNumberArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            float avgScore = score.getAvg();
+            avgScoreArray[i] = avgScore;
+            studentNumberArray[i] = entry.getKey();
+            i++;
+        }
+        return bubbleSort(avgScoreArray, studentNumberArray);
+    }
+
+    public int[] bubbleSort(int[] array, int[] studentNumberArray)
+    {
+        for (int i = 0; i < array.length; i++)
+        {
+            for (int j = 0; j < array.length - i - 1; j++)
+            {
+                if (array[j] > array[j + 1])
+                {
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+
+                    int tempStudentNumber = studentNumberArray[j];
+                    studentNumberArray[j] = studentNumberArray[j + 1];
+                    studentNumberArray[j + 1] = tempStudentNumber;
+                }
+            }
+        }
+
+        return studentNumberArray;
+    }
+
+    public int[] bubbleSort(float[] array, int[] studentNumberArray)
+    {
+        for (int i = 0; i < array.length; i++)
+        {
+            for (int j = 0; j < array.length - i - 1; j++)
+            {
+                if (array[j] > array[j + 1])
+                {
+                    float temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+
+                    int tempStudentNumber = studentNumberArray[j];
+                    studentNumberArray[j] = studentNumberArray[j + 1];
+                    studentNumberArray[j + 1] = tempStudentNumber;
+                }
+            }
+        }
+
+        return studentNumberArray;
+    }
+
+    public int[] chineseSelectionSort()
+    {
+        int[] chineseScoreArray = new int[studentMap.size()];
+        int[] studentNumberArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int chineseScore = score.getChineseScore();
+            chineseScoreArray[i] = chineseScore;
+            studentNumberArray[i] = entry.getKey();
+            i++;
+        }
+        return selectionSort(chineseScoreArray, studentNumberArray);
+    }
+
+    public int[] mathSelectionSort()
+    {
+        int[] mathScoreArray = new int[studentMap.size()];
+        int[] studentNumberArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            int mathScore = score.getMathScore();
+            mathScoreArray[i] = mathScore;
+            studentNumberArray[i] = entry.getKey();
+            i++;
+        }
+        return selectionSort(mathScoreArray, studentNumberArray);
+    }
+
+    public int[] avgSelectionSort()
+    {
+        float[] avgScoreArray = new float[studentMap.size()];
+        int[] studentNumberArray = new int[studentMap.size()];
+        int i = 0;
+        for (Map.Entry<Integer, Score> entry : studentMap.entrySet()) 
+        {
+            Score score = entry.getValue();
+            float avgScore = score.getAvg();
+            avgScoreArray[i] = avgScore;
+            studentNumberArray[i] = entry.getKey();
+            i++;
+        }
+        return selectionSort(avgScoreArray, studentNumberArray);
+    }
+
+    public int[] selectionSort(int[] array, int[] studentNumberArray)
+    {
+        for (int i = 0; i < array.length; i++)
+        {
+            int min = array[i];
+            int minIndex = i;
+            for (int j = i + 1; j < array.length; j++)
+            {
+                if (array[j] < min)
+                {
+                    min = array[j];
+                    minIndex = j;
+                }
+            }
+
+            if (minIndex != i)
+            {
+                int temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
+
+                int tempStudentNumber = studentNumberArray[i];
+                studentNumberArray[i] = studentNumberArray[minIndex];
+                studentNumberArray[minIndex] = tempStudentNumber;
+            }
+        }
+
+        return studentNumberArray;
+    }
+
+    public int[] selectionSort(float[] array, int[] studentNumberArray)
+    {
+        for (int i = 0; i < array.length; i++)
+        {
+            float min = array[i];
+            int minIndex = i;
+            for (int j = i + 1; j < array.length; j++)
+            {
+                if (array[j] < min)
+                {
+                    min = array[j];
+                    minIndex = j;
+                }
+            }
+
+            if (minIndex != i)
+            {
+                float temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
+
+                int tempStudentNumber = studentNumberArray[i];
+                studentNumberArray[i] = studentNumberArray[minIndex];
+                studentNumberArray[minIndex] = tempStudentNumber;
+            }
+        }
+
+        return studentNumberArray;
+    }
 
 
 
