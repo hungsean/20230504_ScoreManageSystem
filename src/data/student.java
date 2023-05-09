@@ -81,7 +81,6 @@ public class Student {
     public boolean inputFile(String filename)
     {
         String path = System.getProperty ("user.dir") + "\\" + filename;
-        System.out.println(path);
         try 
         {
             File file = new File(path);
@@ -343,7 +342,7 @@ public class Student {
         {
             for (int j = 0; j < array.length - i - 1; j++)
             {
-                if (array[j] > array[j + 1])
+                if (array[j] < array[j + 1])
                 {
                     int temp = array[j];
                     array[j] = array[j + 1];
@@ -365,7 +364,7 @@ public class Student {
         {
             for (int j = 0; j < array.length - i - 1; j++)
             {
-                if (array[j] > array[j + 1])
+                if (array[j] < array[j + 1])
                 {
                     float temp = array[j];
                     array[j] = array[j + 1];
@@ -431,11 +430,11 @@ public class Student {
 
     public int[] selectionSort(int[] array, int[] studentNumberArray)
     {
-        for (int i = 0; i < array.length; i++)
+        for (int i = array.length-1; i >=0; i--)
         {
             int min = array[i];
             int minIndex = i;
-            for (int j = i + 1; j < array.length; j++)
+            for (int j = i - 1; j >= 0; j--)
             {
                 if (array[j] < min)
                 {

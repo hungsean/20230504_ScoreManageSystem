@@ -3,14 +3,12 @@ import data.Student;
 
 import java.util.Map;
 import java.util.Scanner;
-import java.util.SortedMap;
 
 public class App {
     public static void main(String[] args) throws Exception {
         Student student = new Student();
         String filename = "test2.txt";
         boolean isFile = student.inputFile(filename);
-        System.out.println(isFile);
         
         while (true)
         {
@@ -37,8 +35,8 @@ public class App {
                 System.out.println("├── 2 : Sort by Math score");
                 System.out.println("├── 3 : Sort by average score");
                 System.out.println("└── 4 : escape");
-                System.out.println("9 : Search student by linear search");
-                System.out.println("10: Search student by binary search");
+                System.out.println("9 : Search student by binary search");
+                System.out.println("10: Search student by linear search");
                 System.out.println("0 : exit");
 
 
@@ -130,102 +128,136 @@ public class App {
 
             if (code.equals("7"))//Sort all student by bubble sort
             {
-                System.out.println("Please enter sort type:");
-                System.out.println("├── 1 : Sort by Chinese score");
-                System.out.println("├── 2 : Sort by Math score");
-                System.out.println("├── 3 : Sort by average score");
-                System.out.println("└── 4 : escape");
-                code = scanner.nextLine();
-                int[] sortedArray;
-                if (code.equals("1"))
+                while(true)
                 {
-                    sortedArray = student.chineseBubbleSort();
-                    
+                    System.out.println();
+                    System.out.println("Please enter sort type:");
+                    System.out.println("├── 1 : Sort by Chinese score");
+                    System.out.println("├── 2 : Sort by Math score");
+                    System.out.println("├── 3 : Sort by average score");
+                    System.out.println("└── 4 : escape");
+                    code = scanner.nextLine();
+                    int[] sortedArray;
+                    if (code.equals("1"))
+                    {
+                        sortedArray = student.chineseBubbleSort();
+                        
+                    }
+                    else if (code.equals("2"))
+                    {
+                        sortedArray = student.mathBubbleSort();
+                        
+                    }
+                    else if (code.equals("3"))
+                    {
+                        sortedArray = student.avgBubbleSort();
+                        
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    System.out.println();
+                    printStudentHHeader();
+                    for(int sortedInt : sortedArray)
+                    {
+                        
+                        printStudentH(sortedInt,student.getStudentByBinary(sortedInt).getValue());
+                    }
                 }
-                else if (code.equals("2"))
-                {
-                    sortedArray = student.mathBubbleSort();
-                    
-                }
-                else if (code.equals("3"))
-                {
-                    sortedArray = student.avgBubbleSort();
-                    
-                }
-                else
-                {
-                    continue;
-                }
-                for(int sortedInt : sortedArray)
-                {
-                    printStudentH(sortedInt,student.getStudentByBinary(sortedInt).getValue());
-                }
-
+                continue;
             }
 
             if (code.equals("8"))//Sort all student by selection sort
             {
-                System.out.println("Please enter sort type:");
-                System.out.println("├── 1 : Sort by Chinese score");
-                System.out.println("├── 2 : Sort by Math score");
-                System.out.println("├── 3 : Sort by average score");
-                System.out.println("└── 4 : escape");
-                code = scanner.nextLine();
-                int[] sortedArray;
-                if (code.equals("1"))
+                while(true)
                 {
-                    sortedArray = student.chineseSelectionSort();
-                    
+                    System.out.println();
+                    System.out.println("Please enter sort type:");
+                    System.out.println("├── 1 : Sort by Chinese score");
+                    System.out.println("├── 2 : Sort by Math score");
+                    System.out.println("├── 3 : Sort by average score");
+                    System.out.println("└── 4 : escape");
+                    code = scanner.nextLine();
+                    int[] sortedArray;
+                    if (code.equals("1"))
+                    {
+                        sortedArray = student.chineseSelectionSort();
+                        
+                    }
+                    else if (code.equals("2"))
+                    {
+                        sortedArray = student.mathSelectionSort();
+                        
+                    }
+                    else if (code.equals("3"))
+                    {
+                        sortedArray = student.avgSelectionSort();
+                        
+                    }
+                    else
+                    {
+                        break;
+                    }
+                    System.out.println();
+                    printStudentHHeader();
+                    for(int sortedInt : sortedArray)
+                    {
+                        
+                        printStudentH(sortedInt,student.getStudentByBinary(sortedInt).getValue());
+                    }
                 }
-                else if (code.equals("2"))
-                {
-                    sortedArray = student.mathSelectionSort();
-                    
-                }
-                else if (code.equals("3"))
-                {
-                    sortedArray = student.avgSelectionSort();
-                    
-                }
-                else
-                {
-                    continue;
-                }
-                for(int sortedInt : sortedArray)
-                {
-                    printStudentH(sortedInt,student.getStudentByBinary(sortedInt).getValue());
-                }
+                continue;
 
             }
 
             if (code.equals("9"))//Search student by binary search
             {
-                System.out.println("Please enter searching student number:");
-                int searchStudentNumber = scanner.nextInt();
-                Map.Entry<Integer, Score> searchResult = student.getStudentByBinary(searchStudentNumber);
-                if (searchResult == null)
+                while(true)
                 {
-                    System.out.println("Not found");
-                }
-                else
-                {
-                    printStudent(searchStudentNumber, searchResult.getValue());
+                    System.out.println();
+                    System.out.println("Please enter searching student number:(0 for exit)");
+                    int searchStudentNumber = scanner.nextInt();
+                    Map.Entry<Integer, Score> searchResult = student.getStudentByBinary(searchStudentNumber);
+                    if (searchStudentNumber == 0)
+                    {
+                        break;
+                    }
+                    else if (searchResult == null)
+                    {
+                        System.out.println("Not found");
+                    }
+                    else
+                    {
+                        System.out.println();
+                        printStudent(searchStudentNumber, searchResult.getValue());
+                    }
                 }
                 continue;
+                
             }
 
             if (code.equals("10"))//Search student by linear search
             {
-                System.out.println("Please enter searching student number:");
-                int searchStudentNumber = scanner.nextInt();
-                Map.Entry<Integer, Score> searchResult = student.getStudentByLinear(searchStudentNumber);
-                if (searchResult == null)
+                while(true)
                 {
-                    System.out.println("Not found");
-                }
-                else
-                {
-                    printStudent(searchStudentNumber, searchResult.getValue());
+                    System.out.println();
+                    System.out.println("Please enter searching student number:(0 for exit)");
+                    int searchStudentNumber = scanner.nextInt();
+                    Map.Entry<Integer, Score> searchResult = student.getStudentByLinear(searchStudentNumber);
+                    if (searchStudentNumber == 0)
+                    {
+                        break;
+                    }
+                    else if (searchResult == null)
+                    {
+                        System.out.println("Not found");
+                    }
+                    else
+                    {
+                        System.out.println();
+                        printStudent(searchStudentNumber, searchResult.getValue());
+                    }
                 }
                 continue;
             }
@@ -281,12 +313,18 @@ public class App {
     {
         System.out.print(studentNumber + " " + score.getName());
         System.out.print(" " + score.getChineseScore());
-        System.out.print(" " + score.getChineseRank());
+        System.out.print(" " + ranktoString(score.getChineseRank()));
         System.out.print(" " + score.getMathScore());
-        System.out.print(" " + score.getMathRank());
+        System.out.print(" " + ranktoString(score.getMathRank()));
         System.out.print(" " + score.getAvg());
-        System.out.print(" " + score.getAvgRank());
+        System.out.print(" " + ranktoString(score.getAvgRank()));
+        System.out.println();
 
+    }
+
+    public static void printStudentHHeader()
+    {
+        System.out.println("Sno Name Chinese ChineseRank Math MathRank Avg AvgRank");
     }
 
 }
